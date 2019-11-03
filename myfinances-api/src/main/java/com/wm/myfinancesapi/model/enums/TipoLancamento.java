@@ -1,4 +1,4 @@
-package com.wm.myfinancesapi.model.entity;
+package com.wm.myfinancesapi.model.enums;
 
 public enum TipoLancamento {
 	
