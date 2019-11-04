@@ -47,16 +47,19 @@ public class UsuarioServiceTest {
 		Assertions.assertThat(result).isNotNull();
 	}
 	
-	@Test(expected = ErroAutenticacao.class)
+	@Test
 	public void deveLancarErroQuandoNaoEncontrarUsuarioCadastradoComOEmailInformado() {
 		//cenario
 		Mockito.when(repository.findByEmail(Mockito.anyString())).thenReturn(Optional.empty());
 		
 		//acao
-		service.autenticar("usuario@email.com", "senha");
+		Throwable exception = Assertions.catchThrowable( () -> service.autenticar("usuario@email.com", "senha"));
+		
+		//verificacao
+		Assertions.assertThat(exception).isInstanceOf(ErroAutenticacao.class).hasMessage("Usuário não encontrado para o email informado.");
 	}
 	
-	@Test(expected = ErroAutenticacao.class)
+	@Test
 	public void deveLancarErroQuandoSenhaNaoBater() {
 		//cenario
 		String senha = "senha";
@@ -64,7 +67,10 @@ public class UsuarioServiceTest {
 		Mockito.when(repository.findByEmail(Mockito.anyString())).thenReturn(Optional.of(usuario));
 		
 		//acao
-		service.autenticar("usuario@email.com", "123");
+		Throwable exception = Assertions.catchThrowable( () -> service.autenticar("usuario@email.com", "123"));
+		
+		//verificacao
+		Assertions.assertThat(exception).isInstanceOf(ErroAutenticacao.class).hasMessage("Senha inválida");
 	}
 	
 	@Test(expected = Test.None.class)
