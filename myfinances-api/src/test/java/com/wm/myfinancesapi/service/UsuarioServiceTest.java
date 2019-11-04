@@ -46,6 +46,20 @@ public class UsuarioServiceTest {
 		Assertions.assertThat(usuarioSalvo.getSenha()).isEqualTo("senha");
 	}
 	
+	@Test(expected = RegraNegocioException.class)
+	public void naoDeveSalvarUmUsuarioComEmailJaCadastrado() {
+		//cenario
+		String email = "usuario@email.com";
+		Usuario usuario = Usuario.builder().email(email).build();
+		Mockito.doThrow(RegraNegocioException.class).when(service).validarEmail(email);
+		
+		//acao
+		service.salvarUsuario(usuario);
+		
+		//verificacao
+		Mockito.verify(repository, Mockito.never()).save(usuario);
+	}
+	
 	@Test(expected = Test.None.class)
 	public void deveAutenticarUmUsuarioComSucesso() {
 		//cenario
