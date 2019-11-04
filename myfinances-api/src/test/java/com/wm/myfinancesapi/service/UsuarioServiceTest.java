@@ -11,6 +11,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.wm.myfinancesapi.exception.ErroAutenticacao;
 import com.wm.myfinancesapi.exception.RegraNegocioException;
 import com.wm.myfinancesapi.model.entity.Usuario;
 import com.wm.myfinancesapi.model.repository.UsuarioRepository;
@@ -44,6 +45,26 @@ public class UsuarioServiceTest {
 		
 		//verificacao
 		Assertions.assertThat(result).isNotNull();
+	}
+	
+	@Test(expected = ErroAutenticacao.class)
+	public void deveLancarErroQuandoNaoEncontrarUsuarioCadastradoComOEmailInformado() {
+		//cenario
+		Mockito.when(repository.findByEmail(Mockito.anyString())).thenReturn(Optional.empty());
+		
+		//acao
+		service.autenticar("usuario@email.com", "senha");
+	}
+	
+	@Test(expected = ErroAutenticacao.class)
+	public void deveLancarErroQuandoSenhaNaoBater() {
+		//cenario
+		String senha = "senha";
+		Usuario usuario = Usuario.builder().email("usuario@email.com").senha(senha).id(1L).build();
+		Mockito.when(repository.findByEmail(Mockito.anyString())).thenReturn(Optional.of(usuario));
+		
+		//acao
+		service.autenticar("usuario@email.com", "123");
 	}
 	
 	@Test(expected = Test.None.class)
