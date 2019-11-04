@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -16,11 +17,12 @@ import com.wm.myfinancesapi.service.impl.UsuarioServiceImpl;
 public class UsuarioServiceTest {
 
 	UsuarioService service;
+	
+	@MockBean
 	UsuarioRepository repository;
 	
 	@Before
 	public void setup() {
-		repository = Mockito.mock(UsuarioRepository.class);
 		service = new UsuarioServiceImpl(repository);
 	}
 	
