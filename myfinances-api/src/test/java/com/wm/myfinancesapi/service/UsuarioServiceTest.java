@@ -1,5 +1,8 @@
 package com.wm.myfinancesapi.service;
 
+import java.util.Optional;
+
+import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,6 +12,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.wm.myfinancesapi.exception.RegraNegocioException;
+import com.wm.myfinancesapi.model.entity.Usuario;
 import com.wm.myfinancesapi.model.repository.UsuarioRepository;
 import com.wm.myfinancesapi.service.impl.UsuarioServiceImpl;
 
@@ -24,6 +28,22 @@ public class UsuarioServiceTest {
 	@Before
 	public void setup() {
 		service = new UsuarioServiceImpl(repository);
+	}
+	
+	@Test(expected = Test.None.class)
+	public void deveAutenticarUmUsuarioComSucesso() {
+		//cenario
+		String email = "usuario@email.com";
+		String senha = "senha";
+		
+		Usuario usuario = Usuario.builder().email(email).senha(senha).id(1L).build();
+		Mockito.when(repository.findByEmail(email)).thenReturn(Optional.of(usuario));
+		
+		//acao
+		Usuario result = service.autenticar(email, senha);
+		
+		//verificacao
+		Assertions.assertThat(result).isNotNull();
 	}
 	
 	@Test(expected = Test.None.class)
