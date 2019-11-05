@@ -25,18 +25,16 @@ import com.wm.myfinancesapi.model.enums.TipoLancamento;
 import com.wm.myfinancesapi.service.LancamentoService;
 import com.wm.myfinancesapi.service.UsuarioService;
 
+import lombok.RequiredArgsConstructor;
+
 @RestController
 @RequestMapping("/api/lancamentos")
+@RequiredArgsConstructor
 public class LancamentoResource {
 
-	private LancamentoService service;
+	private final LancamentoService service;
 	
-	private UsuarioService usuarioService;
-
-	public LancamentoResource(LancamentoService service, UsuarioService usuarioService) {
-		this.service = service;
-		this.usuarioService = usuarioService;
-	}
+	private final UsuarioService usuarioService;
 	
 	@PostMapping
 	@Transactional
