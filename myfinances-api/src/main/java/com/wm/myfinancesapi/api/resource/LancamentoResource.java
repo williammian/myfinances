@@ -1,14 +1,19 @@
 package com.wm.myfinancesapi.api.resource;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wm.myfinancesapi.api.dto.LancamentoDTO;
@@ -70,6 +75,32 @@ public class LancamentoResource {
 			new ResponseEntity("Lançamento não encontrado na base de dados", HttpStatus.BAD_REQUEST));
 	}
 	
+	@GetMapping
+	public ResponseEntity buscar(
+			//ou @RequestParam Map<String, String> params
+			@RequestParam(value = "descricao", required = false) String descricao,
+			@RequestParam(value = "mes", required = false) Integer mes,
+			@RequestParam(value = "ano", required = false) Integer ano,
+			@RequestParam("usuario") Long idUsuario
+			) {
+		
+		Lancamento lancamentoFiltro = new Lancamento();
+		lancamentoFiltro.setDescricao(descricao);
+		lancamentoFiltro.setMes(mes);
+		lancamentoFiltro.setAno(ano);
+		
+		Optional<Usuario> usuario = usuarioService.obterPorId(idUsuario);
+		if(!usuario.isPresent()) {
+			return ResponseEntity.badRequest().body("Não foi possível realizar a consulta. Usuário não encontrado para o id informado.");
+		}else {
+			lancamentoFiltro.setUsuario(usuario.get());
+		}
+		
+		List<Lancamento> lancamentos = service.buscar(lancamentoFiltro);
+		
+		return ResponseEntity.ok(lancamentos);
+	}
+	
 	private Lancamento converter(LancamentoDTO dto) {
 		Lancamento lancamento = new Lancamento();
 		
@@ -81,7 +112,7 @@ public class LancamentoResource {
 		
 		Usuario usuario = usuarioService
 			.obterPorId(dto.getUsuario())
-			.orElseThrow(() -> new RegraNegocioException("Usuário não encontrado para o id informado"));
+			.orElseThrow(() -> new RegraNegocioException("Usuário não encontrado para o id informado."));
 		
 		lancamento.setUsuario(usuario);
 		lancamento.setTipo(TipoLancamento.valueOf(dto.getTipo()));
