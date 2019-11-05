@@ -3,6 +3,7 @@ package com.wm.myfinancesapi.service.impl;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
@@ -93,6 +94,11 @@ public class LancamentoServiceImpl implements LancamentoService {
 		}
 		
 		
+	}
+
+	@Override
+	public Optional<Lancamento> obterPorId(Long id) {
+		return repository.findById(id);
 	}
 
 }
