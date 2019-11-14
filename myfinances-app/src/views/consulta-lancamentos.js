@@ -7,7 +7,7 @@ import SelectMenu from '../components/selectMenu'
 class ConsultaLancamentos extends React.Component {
 
     render(){
-        const lista = [
+        const meses = [
             { label: 'Selecione...', value: ''},
             { label: 'Janeiro', value: '1'},
             { label: 'Fevereiro', value: '2'},
@@ -23,6 +23,12 @@ class ConsultaLancamentos extends React.Component {
             { label: 'Dezembro', value: '12'}
         ]
 
+        const tipos = [
+            { label: 'Selecione...', value: ''},
+            { label: 'Despesa', value: 'DESPESA'},
+            { label: 'Receita', value: 'RECEITA'}
+        ]
+
         return(
             <Card title="Consulta Lançamentos">
                 <div className="row">
@@ -34,12 +40,14 @@ class ConsultaLancamentos extends React.Component {
                                 id="inputAno" 
                                 aria-describedby="emailHelp" 
                                 placeholder="Digite o Ano"/>
-
                             </FormGroup>
 
-                            <FormGroup htmlFor="inputMês" label="Mês: *">
-                                <SelectMenu className="form-control" lista={lista} />
+                            <FormGroup htmlFor="inputMes" label="Mês: ">
+                                <SelectMenu id="inputMes" className="form-control" lista={meses} />
+                            </FormGroup>
 
+                            <FormGroup htmlFor="inputTipo" label="Tipo: ">
+                                <SelectMenu id="inputTipo" className="form-control" lista={tipos} />
                             </FormGroup>
                         </div>
                     </div>
