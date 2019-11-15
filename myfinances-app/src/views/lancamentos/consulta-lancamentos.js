@@ -5,16 +5,40 @@ import FormGroup from '../../components/form-group'
 import SelectMenu from '../../components/selectMenu'
 import LancamentosTable from './lancamentosTable'
 
+import LancamentoService from '../../app/service/lancamentoService'
+import LocalStorageService from '../../app/service/localstorageService'
+
 class ConsultaLancamentos extends React.Component {
 
     state = {
         ano: '',
         mes: '',
-        tipo: ''
+        tipo: '',
+        lancamentos: []
+    }
+
+    constructor() {
+        super();
+        this.service = new LancamentoService();
     }
 
     buscar = () => {
-        console.log(this.state);
+        const usuarioLogado = LocalStorageService.obterItem('_usuario_logado');
+
+        const lancamentoFiltro = {
+            ano: this.state.ano,
+            mes: this.state.mes,
+            tipo: this.state.tipo,
+            usuario: usuarioLogado.id
+        }
+
+        this.service
+            .consultar(lancamentoFiltro)
+            .then( resposta => {
+                this.setState( {lancamentos: resposta.data} );
+            }).catch( error => {
+                console.log(error.data);
+            });
     }
 
     render(){
@@ -38,10 +62,6 @@ class ConsultaLancamentos extends React.Component {
             { label: 'Selecione...', value: ''},
             { label: 'Despesa', value: 'DESPESA'},
             { label: 'Receita', value: 'RECEITA'}
-        ]
-
-        const lancamentos = [
-            {id: 1, descricao: 'Salário', valor: 5000, mes: 1, tipo: 'Receita', status: 'Efetivado'}
         ]
 
         return(
@@ -86,7 +106,7 @@ class ConsultaLancamentos extends React.Component {
                 <div className="row">
                     <div className="col-md-12">
                         <div className="bs-component">
-                            <LancamentosTable lancamentos={lancamentos}/>
+                            <LancamentosTable lancamentos={this.state.lancamentos}/>
                         </div>
                     </div>
                 </div>

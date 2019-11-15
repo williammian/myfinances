@@ -21,6 +21,10 @@ export default class LancamentoService extends ApiService {
             params = `${params}&status=${lancamentoFiltro.status}`;
         }
 
+        if(lancamentoFiltro.usuario) {
+            params = `${params}&usuario=${lancamentoFiltro.usuario}`;
+        }
+
         return this.get(params);
     }
 
