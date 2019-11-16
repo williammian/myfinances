@@ -28,7 +28,17 @@ class CadastroLancamentos extends React.Component {
 
     componentDidMount() {
         const params = this.props.match.params;
-        console.log('params', params);
+        
+        if(params.id){
+            this.service
+                .obterPorId(params.id)
+                .then(response => {
+                    this.setState( {...response.data} )
+                })
+                .catch(erros => {
+                    messages.mensagemErro(erros.response.data)
+                })
+        }
     }
 
     submit = () => {
@@ -42,6 +52,21 @@ class CadastroLancamentos extends React.Component {
             .then( response => {
                 this.props.history.push('/consulta-lancamentos');
                 messages.mensagemSucesso('Lançamento cadastrado com sucesso!');
+            }).catch( error => {
+                messages.mensagemErro(error.response.data);
+            });
+    }
+
+    atualizar = () => {
+        const { descricao, valor, mes, ano, tipo, status, usuario, id } = this.state;
+
+        const lancamento = { descricao, valor, mes, ano, tipo, usuario, status, id };
+
+        this.service
+            .atualizar(lancamento)
+            .then( response => {
+                this.props.history.push('/consulta-lancamentos');
+                messages.mensagemSucesso('Lançamento atualizado com sucesso!');
             }).catch( error => {
                 messages.mensagemErro(error.response.data);
             });
@@ -130,6 +155,7 @@ class CadastroLancamentos extends React.Component {
                     <div className="row">
                         <div className="col-md-6">
                             <button onClick={this.submit} className="btn btn-success">Salvar</button>
+                            <button onClick={this.atualizar} className="btn btn-success">Atualizar</button>
                             <button onClick={e => this.props.history.push('/consulta-lancamentos')} className="btn btn-danger">Cancelar</button>
                         </div>
                     </div>

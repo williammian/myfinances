@@ -56,7 +56,7 @@ class ConsultaLancamentos extends React.Component {
     }
 
     editar = (id) => {
-        this.props.history.push(`/cadastro-lancamentos/${id}`)
+        this.props.history.push(`/cadastro-lancamentos/${id}`);
     }
 
     abrirConfirmacao = ( lancamento ) => {
