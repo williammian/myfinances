@@ -5,9 +5,12 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+import javax.persistence.criteria.Order;
+
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.ExampleMatcher.StringMatcher;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -58,7 +61,9 @@ public class LancamentoServiceImpl implements LancamentoService {
 				.withIgnoreCase()
 				.withStringMatcher(StringMatcher.CONTAINING));
 		
-		return repository.findAll(example);
+		Sort sort = Sort.by(Sort.Direction.ASC, "ano").and(Sort.by(Sort.Direction.ASC, "mes")).and(Sort.by(Sort.Direction.ASC, "descricao"));
+		
+		return repository.findAll(example, sort);
 	}
 
 	@Override
