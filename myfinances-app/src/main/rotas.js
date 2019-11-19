@@ -18,7 +18,9 @@ function RotaAutenticada( { component : Component, ...props } ) {
                     <Component {...componentProps} />
                 )
             }else {
-                <Redirect to={ { pathname: '/login', state: { from: componentProps.location } } } />
+                return(
+                    <Redirect to={ { pathname: '/login', state: { from: componentProps.location } } } />
+                )
             }
         } } />
     )
