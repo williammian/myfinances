@@ -1,0 +1,17 @@
+//instalando o yarn
+npm install -g yarn
+
+//instalando React CLI
+npm install -g create-react-app
+
+//criando o projeto React
+create-react-app teste-app
+
+//start server development
+yarn start
+
+//build for production
+yarn build
+
+//start test
+yarn test
