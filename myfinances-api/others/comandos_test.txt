@@ -1,0 +1,5 @@
+//gerando build aplicacao back-end (na pasta raiz do projeto)
+mvn clean package
+
+//executando o jar da aplicacao back-end (na pasta target onde se encontra o jar)
+java -jar myfinances-0.0.1-SNAPSHOT.jar
