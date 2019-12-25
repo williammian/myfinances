@@ -86,4 +86,29 @@ public class LancamentoServiceTest {
 		verify(repository, never()).save(lancamento);
 	}
 	
+	@Test
+	public void deveDeletarUmLancamento() {
+		//cenário
+		Lancamento lancamento = LancamentoRepositoryTest.criarLancamento();
+		lancamento.setId(1l);
+		
+		//execucao
+		service.deletar(lancamento);
+		
+		//verificacao
+		verify( repository ).delete(lancamento);
+	}
+	
+	@Test
+	public void deveLancarErroAoTentarDeletarUmLancamentoQueAindaNaoFoiSalvo() {
+		//cenário
+		Lancamento lancamento = LancamentoRepositoryTest.criarLancamento();
+		
+		//execucao
+		catchThrowableOfType( () -> service.deletar(lancamento), NullPointerException.class );
+		
+		//verificacao
+		verify( repository, never() ).delete(lancamento);
+	}
+	
 }
