@@ -19,6 +19,7 @@ import org.mockito.Mockito;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -130,7 +131,7 @@ public class LancamentoServiceTest {
 		lancamento.setId(1l);
 		
 		List<Lancamento> lista = Arrays.asList(lancamento);
-		when( repository.findAll(any(Example.class)) ).thenReturn(lista);
+		when( repository.findAll(any(Example.class), any(Sort.class)) ).thenReturn(lista);
 		
 		//execucao
 		List<Lancamento> resultado = service.buscar(lancamento);
