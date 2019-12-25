@@ -1,9 +1,24 @@
 package com.wm.myfinancesapi.service;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.catchThrowableOfType;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.mock.mockito.SpyBean;
+import org.springframework.data.domain.Example;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -13,9 +28,6 @@ import com.wm.myfinancesapi.model.enums.StatusLancamento;
 import com.wm.myfinancesapi.model.repository.LancamentoRepository;
 import com.wm.myfinancesapi.model.repository.LancamentoRepositoryTest;
 import com.wm.myfinancesapi.service.impl.LancamentoServiceImpl;
-
-import static org.assertj.core.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
 @ActiveProfiles("test")
@@ -109,6 +121,26 @@ public class LancamentoServiceTest {
 		
 		//verificacao
 		verify( repository, never() ).delete(lancamento);
+	}
+	
+	@Test
+	public void deveFiltrarLancamentos() {
+		//cenário
+		Lancamento lancamento = LancamentoRepositoryTest.criarLancamento();
+		lancamento.setId(1l);
+		
+		List<Lancamento> lista = Arrays.asList(lancamento);
+		when( repository.findAll(any(Example.class)) ).thenReturn(lista);
+		
+		//execucao
+		List<Lancamento> resultado = service.buscar(lancamento);
+		
+		//verificacoes
+		assertThat(resultado)
+			.isNotEmpty()
+			.hasSize(1)
+			.contains(lancamento);
+		
 	}
 	
 }
