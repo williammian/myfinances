@@ -57,4 +57,33 @@ public class LancamentoServiceTest {
 		verify(repository, never()).save(lancamentoASalvar);
 	}
 	
+	@Test
+	public void deveAtualizarUmLancamento() {
+		//cenário
+		Lancamento lancamentoSalvo = LancamentoRepositoryTest.criarLancamento();
+		lancamentoSalvo.setId(1l);
+		lancamentoSalvo.setStatus(StatusLancamento.PENDENTE);
+
+		doNothing().when(service).validar(lancamentoSalvo);
+		
+		when(repository.save(lancamentoSalvo)).thenReturn(lancamentoSalvo);
+		
+		//execucao
+		service.atualizar(lancamentoSalvo);
+		
+		//verificação
+		verify(repository, times(1)).save(lancamentoSalvo);
+		
+	}
+	
+	@Test
+	public void deveLancarErroAoTentarAtualizarUmLancamentoQueAindaNaoFoiSalvo() {
+		//cenário
+		Lancamento lancamento = LancamentoRepositoryTest.criarLancamento();
+		
+		//execucao e verificacao
+		catchThrowableOfType( () -> service.atualizar(lancamento), NullPointerException.class );
+		verify(repository, never()).save(lancamento);
+	}
+	
 }
