@@ -13,6 +13,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -159,6 +160,40 @@ public class LancamentoServiceTest {
 		//verificacoes
 		assertThat(lancamento.getStatus()).isEqualTo(novoStatus);
 		verify(service).atualizar(lancamento);	
+	}
+	
+	@Test
+	public void deveObterUmLancamentoPorID() {
+		//cenário
+		Long id = 1l;
+		
+		Lancamento lancamento = LancamentoRepositoryTest.criarLancamento();
+		lancamento.setId(id);
+		
+		when(repository.findById(id)).thenReturn(Optional.of(lancamento));
+		
+		//execucao
+		Optional<Lancamento> resultado =  service.obterPorId(id);
+		
+		//verificacao
+		assertThat(resultado.isPresent()).isTrue();
+	}
+	
+	@Test
+	public void deveREtornarVazioQuandoOLancamentoNaoExiste() {
+		//cenário
+		Long id = 1l;
+		
+		Lancamento lancamento = LancamentoRepositoryTest.criarLancamento();
+		lancamento.setId(id);
+		
+		when( repository.findById(id) ).thenReturn( Optional.empty() );
+		
+		//execucao
+		Optional<Lancamento> resultado =  service.obterPorId(id);
+		
+		//verificacao
+		assertThat(resultado.isPresent()).isFalse();
 	}
 	
 }
