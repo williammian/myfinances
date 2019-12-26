@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowableOfType;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
@@ -15,7 +16,6 @@ import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.data.domain.Example;
@@ -141,7 +141,24 @@ public class LancamentoServiceTest {
 			.isNotEmpty()
 			.hasSize(1)
 			.contains(lancamento);
+	}
+	
+	@Test
+	public void deveAtualizarOStatusDeUmLancamento() {
+		//cenário
+		Lancamento lancamento = LancamentoRepositoryTest.criarLancamento();
+		lancamento.setId(1l);
+		lancamento.setStatus(StatusLancamento.PENDENTE);
 		
+		StatusLancamento novoStatus = StatusLancamento.EFETIVADO;
+		doReturn(lancamento).when(service).atualizar(lancamento);
+		
+		//execucao
+		service.atualizarStatus(lancamento, novoStatus);
+		
+		//verificacoes
+		assertThat(lancamento.getStatus()).isEqualTo(novoStatus);
+		verify(service).atualizar(lancamento);	
 	}
 	
 }
