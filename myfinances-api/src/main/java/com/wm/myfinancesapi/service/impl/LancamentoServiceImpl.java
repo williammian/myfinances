@@ -92,7 +92,7 @@ public class LancamentoServiceImpl implements LancamentoService {
 		}
 		
 		if(lancamento.getValor() == null || lancamento.getValor().compareTo(BigDecimal.ZERO) < 1) {
-			throw new RegraNegocioException("Informe um valor válido.");
+			throw new RegraNegocioException("Informe um Valor válido.");
 		}
 		
 		if(lancamento.getTipo() == null) {
