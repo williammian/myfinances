@@ -8,7 +8,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -22,6 +21,7 @@ import com.wm.myfinancesapi.exception.RegraNegocioException;
 import com.wm.myfinancesapi.model.entity.Lancamento;
 import com.wm.myfinancesapi.model.entity.Usuario;
 import com.wm.myfinancesapi.model.enums.StatusLancamento;
+import com.wm.myfinancesapi.model.enums.TipoLancamento;
 import com.wm.myfinancesapi.model.repository.LancamentoRepository;
 import com.wm.myfinancesapi.model.repository.LancamentoRepositoryTest;
 import com.wm.myfinancesapi.service.impl.LancamentoServiceImpl;
@@ -252,7 +252,26 @@ public class LancamentoServiceTest {
 		
 		erro = catchThrowable( () -> service.validar(lancamento) );
 		assertThat(erro).isInstanceOf(RegraNegocioException.class).hasMessage("Informe um tipo de lançamento.");
+	}
+	
+	@Test
+	public void deveObterSaldoPorUsuario() {
+		//cenario
+		Long idUsuario = 1l;
 		
+		when( repository
+				.obterSaldoPorTipoLancamentoEUsuarioEStatus(idUsuario, TipoLancamento.RECEITA, StatusLancamento.EFETIVADO)) 
+				.thenReturn(BigDecimal.valueOf(100));
+		
+		when( repository
+				.obterSaldoPorTipoLancamentoEUsuarioEStatus(idUsuario, TipoLancamento.DESPESA, StatusLancamento.EFETIVADO)) 
+				.thenReturn(BigDecimal.valueOf(50));
+		
+		//execucao
+		BigDecimal saldo = service.obterSaldoPorUsuario(idUsuario);
+		
+		//verificacao
+		assertThat(saldo).isEqualTo(BigDecimal.valueOf(50));
 	}
 	
 }
