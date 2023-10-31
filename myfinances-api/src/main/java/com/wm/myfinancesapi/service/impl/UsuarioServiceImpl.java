@@ -2,6 +2,7 @@ package com.wm.myfinancesapi.service.impl;
 
 import java.util.Optional;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,10 +16,12 @@ import com.wm.myfinancesapi.service.UsuarioService;
 public class UsuarioServiceImpl implements UsuarioService {
 
 	private UsuarioRepository repository;
+	private PasswordEncoder encoder;
 	
-	public UsuarioServiceImpl(UsuarioRepository repository) {
+	public UsuarioServiceImpl(UsuarioRepository repository, PasswordEncoder encoder) {
 		super();
 		this.repository = repository;
+		this.encoder = encoder;
 	}
 	
 	@Override
@@ -29,8 +32,10 @@ public class UsuarioServiceImpl implements UsuarioService {
 			throw new ErroAutenticacao("Usuário não encontrado para o email informado.");
 		}
 		
-		if(!usuario.get().getSenha().equals(senha)) {
-			throw new ErroAutenticacao("Senha inválida");
+		boolean senhasBatem = encoder.matches(senha, usuario.get().getSenha());
+		
+		if(!senhasBatem) {
+			throw new ErroAutenticacao("Senha inválida.");
 		}
 		
 		return usuario.get();
@@ -40,7 +45,14 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Transactional
 	public Usuario salvarUsuario(Usuario usuario) {
 		validarEmail(usuario.getEmail());
+		criptografarSenha(usuario);
 		return repository.save(usuario);
+	}
+	
+	private void criptografarSenha(Usuario usuario) {
+		String senha = usuario.getSenha();
+		String senhaCripto = encoder.encode(senha);
+		usuario.setSenha(senhaCripto);
 	}
 
 	@Override

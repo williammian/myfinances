@@ -1,0 +1,63 @@
+2023-10-31 09:39:48.032  INFO 1312 --- [restartedMain] c.w.m.MyfinancesApiApplication           : Starting MyfinancesApiApplication on DESKTOP-E4FEAF1 with PID 1312 (C:\Fontes\FontesSTS\myfinances\myfinances-api\target\classes started by User in C:\Fontes\FontesSTS\myfinances\myfinances-api)
+2023-10-31 09:39:48.041  INFO 1312 --- [restartedMain] c.w.m.MyfinancesApiApplication           : No active profile set, falling back to default profiles: default
+2023-10-31 09:39:48.204  INFO 1312 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-10-31 09:39:48.205  INFO 1312 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-10-31 09:39:50.293  INFO 1312 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2023-10-31 09:39:50.398  INFO 1312 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 95ms. Found 2 repository interfaces.
+2023-10-31 09:39:50.900  INFO 1312 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$1b7b93b3] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-31 09:39:51.982  INFO 1312 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-10-31 09:39:52.041  INFO 1312 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-10-31 09:39:52.041  INFO 1312 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.26]
+2023-10-31 09:39:52.211  INFO 1312 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-10-31 09:39:52.212  INFO 1312 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 3990 ms
+2023-10-31 09:39:52.679  INFO 1312 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-10-31 09:39:52.889  INFO 1312 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-10-31 09:39:53.076  INFO 1312 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2023-10-31 09:39:53.211  INFO 1312 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.12.Final}
+2023-10-31 09:39:53.214  INFO 1312 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2023-10-31 09:39:53.592  INFO 1312 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2023-10-31 09:39:53.890  INFO 1312 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL95Dialect
+2023-10-31 09:39:53.914  INFO 1312 --- [restartedMain] o.h.e.j.e.i.LobCreatorBuilderImpl        : HHH000422: Disabling contextual LOB creation as connection was null
+2023-10-31 09:39:53.923  INFO 1312 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@4f11fbb6
+2023-10-31 09:39:54.894  INFO 1312 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-10-31 09:39:55.485  INFO 1312 --- [restartedMain] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2023-10-31 09:39:56.004  INFO 1312 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@294d7396, org.springframework.security.web.context.SecurityContextPersistenceFilter@240a4073, org.springframework.security.web.header.HeaderWriterFilter@33765391, org.springframework.security.web.authentication.logout.LogoutFilter@46d58e87, com.wm.myfinancesapi.api.JwtTokenFilter@63929f5e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@31519799, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@11e0754c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@26d8e975, org.springframework.security.web.session.SessionManagementFilter@351bcd25, org.springframework.security.web.access.ExceptionTranslationFilter@326b6107, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@79bf80f0]
+2023-10-31 09:39:56.156  WARN 1312 --- [restartedMain] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-10-31 09:39:56.811  INFO 1312 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-10-31 09:39:56.928  INFO 1312 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-10-31 09:39:56.930  INFO 1312 --- [restartedMain] c.w.m.MyfinancesApiApplication           : Started MyfinancesApiApplication in 10.012 seconds (JVM running for 11.088)
+2023-10-31 09:52:32.900  INFO 2940 --- [restartedMain] c.w.m.MyfinancesApiApplication           : Starting MyfinancesApiApplication on DESKTOP-E4FEAF1 with PID 2940 (C:\Fontes\FontesSTS\myfinances\myfinances-api\target\classes started by User in C:\Fontes\FontesSTS\myfinances\myfinances-api)
+2023-10-31 09:52:32.902  INFO 2940 --- [restartedMain] c.w.m.MyfinancesApiApplication           : No active profile set, falling back to default profiles: default
+2023-10-31 09:52:32.945  INFO 2940 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-10-31 09:52:32.945  INFO 2940 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-10-31 09:52:33.728  INFO 2940 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2023-10-31 09:52:33.835  INFO 2940 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 98ms. Found 2 repository interfaces.
+2023-10-31 09:52:34.221  INFO 2940 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$1b93c7c1] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-10-31 09:52:34.952  INFO 2940 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-10-31 09:52:34.978  INFO 2940 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-10-31 09:52:34.978  INFO 2940 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.26]
+2023-10-31 09:52:35.081  INFO 2940 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-10-31 09:52:35.081  INFO 2940 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2136 ms
+2023-10-31 09:52:35.375  INFO 2940 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-10-31 09:52:35.486  INFO 2940 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-10-31 09:52:35.549  INFO 2940 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2023-10-31 09:52:35.627  INFO 2940 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.12.Final}
+2023-10-31 09:52:35.630  INFO 2940 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2023-10-31 09:52:35.799  INFO 2940 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2023-10-31 09:52:35.966  INFO 2940 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL95Dialect
+2023-10-31 09:52:35.983  INFO 2940 --- [restartedMain] o.h.e.j.e.i.LobCreatorBuilderImpl        : HHH000422: Disabling contextual LOB creation as connection was null
+2023-10-31 09:52:35.988  INFO 2940 --- [restartedMain] org.hibernate.type.BasicTypeRegistry     : HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@99ad202
+2023-10-31 09:52:36.603  INFO 2940 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-10-31 09:52:37.003  INFO 2940 --- [restartedMain] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2023-10-31 09:52:37.285  INFO 2940 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4059a5f4, org.springframework.security.web.context.SecurityContextPersistenceFilter@1df05b15, org.springframework.security.web.header.HeaderWriterFilter@7afd7aa2, org.springframework.security.web.authentication.logout.LogoutFilter@11c2c319, com.wm.myfinancesapi.api.JwtTokenFilter@52fbb7b4, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@8da5acf, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@79a29838, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1bec462e, org.springframework.security.web.session.SessionManagementFilter@6e43b7c3, org.springframework.security.web.access.ExceptionTranslationFilter@568b68a1, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@10330c5e]
+2023-10-31 09:52:37.312  WARN 2940 --- [restartedMain] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-10-31 09:52:37.823  INFO 2940 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-10-31 09:52:37.877  INFO 2940 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-10-31 09:52:37.880  INFO 2940 --- [restartedMain] c.w.m.MyfinancesApiApplication           : Started MyfinancesApiApplication in 5.296 seconds (JVM running for 5.738)
+2023-10-31 09:53:37.975  INFO 2940 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-31 09:53:37.976  INFO 2940 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-10-31 09:53:37.986  INFO 2940 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 10 ms
