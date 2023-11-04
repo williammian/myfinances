@@ -1,0 +1,32 @@
+https://pt-br.reactjs.org
+
+https://nodejs.org
+
+node -v
+
+npm -v
+
+npm install -g yarn
+
+npm install -g create-react-app
+
+-----------------------------------------
+
+Criando aplicação react
+create-react-app minhas-financas-app
+
+Iniciar aplicação
+yarn start
+
+Rodando em
+http://localhost:3000
+
+----------------------------------------
+
+https://bootswatch.com/
+
+yarn add bootswatch
+ou
+npm install bootswatch
+
+
