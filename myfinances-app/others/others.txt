@@ -38,3 +38,12 @@ yarn add react-router-dom@5.1.2
 https://codeseven.github.io/toastr/
 
 yarn add toastr
+
+-----------------------------------------
+
+https://npmjs.com/package/currency-formatter
+
+yarn add currency-formatter
+
+------------------------------------------
+
