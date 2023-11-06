@@ -51,6 +51,11 @@ https://primereact.org/
 
 yarn add primereact primeicons classnames react-transition-group
 
+Em App.js
+import 'primereact/resources/themes/nova-light/theme.css';
+import 'primereact/resources/primereact.min.css';
+import 'primeicons/primeicons.css';
+
 -------------------------------------------
 
 https://reactstrap.github.io/?path=/story/home-installation--page
