@@ -1,0 +1,70 @@
+https://pt-br.reactjs.org
+
+https://nodejs.org
+
+node -v
+
+npm -v
+
+npm install -g yarn
+
+npm install -g create-react-app
+
+-----------------------------------------
+
+Criando aplicação react
+create-react-app minhas-financas-app
+
+Iniciar aplicação
+yarn start
+
+Rodando em
+http://localhost:3000
+
+----------------------------------------
+
+https://bootswatch.com/
+
+yarn add bootswatch
+ou
+npm install bootswatch
+
+-----------------------------------------
+
+yarn add react-router-dom@5.1.2
+
+----------------------------------------
+
+https://codeseven.github.io/toastr/
+
+yarn add toastr
+
+-----------------------------------------
+
+https://npmjs.com/package/currency-formatter
+
+yarn add currency-formatter
+
+------------------------------------------
+
+https://primereact.org/
+
+yarn add primereact primeicons classnames react-transition-group
+
+Em App.js
+import 'primereact/resources/themes/nova-light/theme.css';
+import 'primereact/resources/primereact.min.css';
+import 'primeicons/primeicons.css';
+
+-------------------------------------------
+
+https://reactstrap.github.io/?path=/story/home-installation--page
+
+--------------------------------------------
+
+https://react-materialize.github.io/react-materialize/?path=/story/react-materialize--welcome
+
+--------------------------------------------
+
+
+
